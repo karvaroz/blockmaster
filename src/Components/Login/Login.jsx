@@ -49,23 +49,25 @@ const Login = () => {
               type="submit"
               disabled={!isValid}
             >
-              Login
+              Ingresar
             </button>
             <button
               className="login_btn google"
               type="submit"
               onClick={() => dispatch(startGoogleLogin())}
             >
-              Sign up with Google
+              Registrarse con Google
             </button>
             <button
               className="login_btn facebook"
               type="submit"
               onClick={() => dispatch(startFacebookLogin())}
             >
-              Sign up with Facebook
+              Registrarse con Facebook
             </button>
-            <Link to="/signup" className="link">Don't have an account?</Link>
+            <Link to="/signup" className="link">
+              No tiene una cuenta?
+            </Link>
           </Form>
         )}
       </Formik>

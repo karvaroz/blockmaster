@@ -64,10 +64,10 @@ const SignUp = () => {
             className="error"
           />
           <button className="login_btn login" type="submit" disabled={!isValid}>
-            Sign Up
+            Registrarse
           </button>
           <Link to="/" className="link">
-            Already have an account?
+            Ya tiene una cuenta?
           </Link>
         </Form>
       )}

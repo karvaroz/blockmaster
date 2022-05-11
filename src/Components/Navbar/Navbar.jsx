@@ -25,7 +25,7 @@ const Navbar = () => {
                   style={{
                     color: isActiveLink === "all" ? "yellow" : "white",
                   }}
-                  to="/"
+                  to="/movies"
                 >
                   Todas
                 </NavLink>
@@ -35,7 +35,7 @@ const Navbar = () => {
                   style={{
                     color: isActiveLink === "most-valued" ? "yellow" : "white",
                   }}
-                  to="/mas-valoradas"
+                  to="/movies"
                 >
                   Más valoradas
                 </NavLink>
@@ -45,7 +45,7 @@ const Navbar = () => {
                   style={{
                     color: isActiveLink === "least-valued" ? "yellow" : "white",
                   }}
-                  to="/menos-valoradas"
+                  to="/movies"
                 >
                   Menos valoradas
                 </NavLink>
