@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { startSignUpEmailPassword } from "../../Redux/actions/authActions";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import "../Login/LoginStyle.css";
+import { Link } from "react-router-dom";
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -39,26 +41,34 @@ const SignUp = () => {
         );
       }}
     >
-      {({  isValid }) => (
-        <Form>
+      {({ isValid }) => (
+        <Form className="login_form" style={{ height: "60vh" }}>
+          <img src="./images/logo-blockBuster.png" alt="logo" />
           <Field type="text" name="name" placeholder="Name" />
-          <ErrorMessage name="name" component="div" />
+          <ErrorMessage name="name" component="span" className="error" />
 
           <Field type="email" name="email" placeholder="Email" />
-          <ErrorMessage name="email" component="div" />
+          <ErrorMessage name="email" component="span" className="error" />
 
           <Field type="password" name="password" placeholder="Password" />
-          <ErrorMessage name="password" component="div" />
+          <ErrorMessage name="password" component="span" className="error" />
 
           <Field
             type="password"
             name="confirmPassword"
             placeholder="Password again"
           />
-          <ErrorMessage name="confirmPassword" component="div" />
-          <button type="submit" disabled={!isValid}>
+          <ErrorMessage
+            name="confirmPassword"
+            component="span"
+            className="error"
+          />
+          <button className="login_btn login" type="submit" disabled={!isValid}>
             Sign Up
           </button>
+          <Link to="/" className="link">
+            Already have an account?
+          </Link>
         </Form>
       )}
     </Formik>
