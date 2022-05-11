@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Logo, Menu, MenuItem, Navigation, Search, StyledHeader, Wrapper } from './NavbarStyle';
 
 const Navbar = () => {
@@ -78,6 +78,8 @@ const Navbar = () => {
               </button>
             </div>
           </Search>
+          <button className="search-button">Cerrar</button>
+          <Link to="/create">Crear</Link>
         </div>
       </Wrapper>
     </StyledHeader>
