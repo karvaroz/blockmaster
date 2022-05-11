@@ -8,6 +8,7 @@ import {
   signInWithPopup,
   updateProfile,
 } from "firebase/auth";
+import Swal from "sweetalert2";
 
 // Async Login with email and password
 export const startLoginEmailPassword = (email, password) => {
@@ -16,7 +17,7 @@ export const startLoginEmailPassword = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         dispatch(login(user.uid, user.displayName));
-        alert("Login Successful");
+        Swal.fire("Good job!", "Login Sucessfull!", "success");
       })
       .catch((error) => {
         console.log(error);
@@ -39,7 +40,7 @@ export const startGoogleLogin = () => {
     signInWithPopup(auth, google)
       .then(({ user }) => {
         dispatch(login(user.uid, user.displayName));
-        alert("Usuario creado correctamente");
+        Swal.fire("Good job!", "Google sign up succesfull!", "success");
       })
       .catch((error) => {
         console.log(error);
@@ -54,7 +55,7 @@ export const startFacebookLogin = () => {
     signInWithPopup(auth, facebook)
       .then(({ user }) => {
         dispatch(login(user.uid, user.displayName));
-        alert("Usuario creado correctamente");
+        Swal.fire("Good job!", "Facebook sign up succesfull!", "success");
       })
       .catch((error) => {
         console.log(error);
@@ -70,7 +71,7 @@ export const startSignUpEmailPassword = (email, password, name) => {
       .then(async ({ user }) => {
         await updateProfile(auth.currentUser, { displayName: name });
         dispatch(signUp(user.uid, user.displayName, user.email, user.password));
-        alert("Usuario creado correctamente");
+        Swal.fire("Good job!", "Sign up succesfull!", "success");
       })
       .catch((error) => {
         console.log(error);

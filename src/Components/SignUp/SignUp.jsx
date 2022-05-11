@@ -57,7 +57,7 @@ const SignUp = () => {
           />
           <ErrorMessage name="confirmPassword" component="div" />
           <button type="submit" disabled={!isValid}>
-            Login
+            Sign Up
           </button>
         </Form>
       )}
