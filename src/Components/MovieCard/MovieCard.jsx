@@ -5,7 +5,7 @@ import { Poster, StyledCard, VoteAverage } from "./MovieCardStyle";
 const MovieCard = ({ movie }) => {
   // const dispatch = useDispatch();
 
-  const { poster_path, vote_average, title, id } = movie;
+  const { poster_path, vote_average, original_title } = movie;
 
   const handlerCLickCard = () => {
     // dispatch(showModal(movie));
@@ -15,11 +15,11 @@ const MovieCard = ({ movie }) => {
   const getAverage = (avarage) => avarage < 7;
 
   return (
-    <StyledCard onClick={() => handlerCLickCard()} id={id}>
+    <StyledCard onClick={() => handlerCLickCard()}>
       <Poster
         src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-        alt={title}
-        title={title}
+        alt={original_title}
+        title={original_title}
         loading="lazy"
       />
       <VoteAverage average={getAverage(vote_average)}>

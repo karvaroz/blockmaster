@@ -1,10 +1,12 @@
 export const types = {
+  /* AUTENTICACIÓN */
   login: "[Auth] Login",
   signup: "[Auth] Signup",
   logout: "[Auth] Logout",
 
-  add: "[Crud] Add",
-  delete: "[Crud] Delete",
-  update: "[Crud] Update",
-  get: "[Crud] Get",
+  /* MOVIES */
+  add: "[Crud] Add Movie",
+  delete: "[Crud] Delete Movie",
+  update: "[Crud] Update Movie",
+  get: "[Crud] Get Movie",
 };

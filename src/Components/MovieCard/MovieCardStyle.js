@@ -34,8 +34,10 @@ export const VoteAverage = styled.p`
 
 export const StyledGridMovies = styled.section`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
   place-content: center;
   align-items: center;
   gap: 1rem;
+  padding: 2rem 0;
+
 `;
