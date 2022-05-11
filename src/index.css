@@ -18,9 +18,17 @@
   --body2-bold: 700 1rem/1.1875rem Montserrat;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  color: var(--white);
-  background-color: var(--black);
-  font: var(--headline1);
+  background: var(--background);
+  margin: 0;
   font-family: "Montserrat", sans-serif;
+}
+
+p {
+  margin: 0;
 }

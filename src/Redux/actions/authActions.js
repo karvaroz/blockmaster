@@ -10,7 +10,11 @@ import {
 } from "firebase/auth";
 import Swal from "sweetalert2";
 
+
 // Async Login with email and password
+
+
+
 export const startLoginEmailPassword = (email, password) => {
   return (dispatch) => {
     const auth = getAuth();
