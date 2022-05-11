@@ -2,9 +2,14 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import { Logo, Menu, MenuItem, Navigation, Search, StyledHeader, Wrapper } from './NavbarStyle';
+import { useDispatch } from "react-redux";
+import { startLogout } from '../../Redux/actions/authActions';
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+
     const isActiveLink = useSelector((state) => state.filter);
+
   return (
     <StyledHeader>
       <Wrapper>
@@ -78,7 +83,12 @@ const Navbar = () => {
               </button>
             </div>
           </Search>
-          <button className="search-button">Cerrar</button>
+          <button
+            className="search-button"
+            onClick={() => dispatch(startLogout())}
+          >
+            Cerrar
+          </button>
           <Link to="/create">Crear</Link>
         </div>
       </Wrapper>

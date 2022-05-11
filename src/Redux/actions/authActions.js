@@ -13,18 +13,17 @@ import Swal from "sweetalert2";
 
 // Async Login with email and password
 
-
-
 export const startLoginEmailPassword = (email, password) => {
   return (dispatch) => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         dispatch(login(user.uid, user.displayName));
-        Swal.fire("Good job!", "Login Sucessfull!", "success");
+        Swal.fire("Bien Hecho!", "Inicio de sesión exitoso", "success");
       })
       .catch((error) => {
         console.log(error);
+        Swal.fire("Oops...", "Ha ocurrido un error", "error");
       });
   };
 };
@@ -44,10 +43,11 @@ export const startGoogleLogin = () => {
     signInWithPopup(auth, google)
       .then(({ user }) => {
         dispatch(login(user.uid, user.displayName));
-        Swal.fire("Good job!", "Google sign up succesfull!", "success");
+       Swal.fire("Bien Hecho!", "Inicio de sesión con google exitoso", "success");
       })
       .catch((error) => {
         console.log(error);
+        Swal.fire("Oops...", "Ha ocurrido un error", "error");
       });
   };
 };
@@ -59,10 +59,11 @@ export const startFacebookLogin = () => {
     signInWithPopup(auth, facebook)
       .then(({ user }) => {
         dispatch(login(user.uid, user.displayName));
-        Swal.fire("Good job!", "Facebook sign up succesfull!", "success");
+        Swal.fire("Bien Hecho!", "Inicio de sesión con facebook exitoso", "success");
       })
       .catch((error) => {
         console.log(error);
+        Swal.fire("Oops...", "Ha ocurrido un error", "error");
       });
   };
 };
@@ -75,10 +76,11 @@ export const startSignUpEmailPassword = (email, password, name) => {
       .then(async ({ user }) => {
         await updateProfile(auth.currentUser, { displayName: name });
         dispatch(signUp(user.uid, user.displayName, user.email, user.password));
-        Swal.fire("Good job!", "Sign up succesfull!", "success");
+        Swal.fire("Bien Hecho!", "Registro exitoso", "success");
       })
       .catch((error) => {
         console.log(error);
+        Swal.fire("Oops...", "Ha ocurrido un error", "error");
       });
   };
 };
@@ -101,9 +103,11 @@ export const startLogout = () => {
       .signOut()
       .then(() => {
         dispatch(logout());
+        Swal.fire("Bien Hecho!", "Cerraste sesión", "success");
       })
       .catch((error) => {
         console.log(error);
+        Swal.fire("Oops...", "Ha ocurrido un error", "error");
       });
   };
 };

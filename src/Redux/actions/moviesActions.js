@@ -25,3 +25,12 @@ export const getMoviesSync = (movies) => {
 };
 
 /* CREATE DATA */
+
+export const addMovie = (movie) => {};
+
+export const addMoviesSync = (movie) => {
+  return {
+    type: types.add,
+    payload: movie,
+  };
+};
