@@ -9,6 +9,7 @@ const TraerApi = () => {
   // const api_url = "https://api.themoviedb.org/3/discover/movie?api_key=";
   // const image_path = "https://image.tmdb.org/t/p/w500";
   // const complete_api_url = "https://api.themoviedb.org/3/discover/movie?api_key=f9d470b2f20f7aca82045df1426f739b&page=4";
+  // const all_genres = "https://api.themoviedb.org/3/genre/movie/list?api_key=f9d470b2f20f7aca82045df1426f739b"
 
   let [values, handleInputChange, reset] = useForm({
     api: "",
