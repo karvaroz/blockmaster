@@ -64,7 +64,12 @@ const MovieCreate = () => {
           value={vote_average}
           onChange={handleInputChange}
         />
-        <input type="file" name="poster_path" />
+        <input
+          type="file"
+          name="poster_path"
+          value={poster_path}
+          onChange={handleInputChange}
+        />
         <button type="submit" className="login_btn login">
           Crear Pelicula
         </button>

@@ -23,3 +23,5 @@ export const getMoviesSync = (movies) => {
     payload: movies,
   };
 };
+
+/* CREATE DATA */
