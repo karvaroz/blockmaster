@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../Redux/actions/moviesActions";
+import Loader from "../Loader/Loader";
 import MovieCard from "../MovieCard/MovieCard";
 import { StyledGridMovies } from "../MovieCard/MovieCardStyle";
 import { Wrapper } from "../Navbar/NavbarStyle";
@@ -16,13 +17,13 @@ const MoviesBox = () => {
 
   return (
     <Wrapper>
-      <h2 style={{   color: "white"}}>Todas las peliculas</h2>
+      <h2 style={{ color: "white" }}>Todas las peliculas</h2>
 
       <StyledGridMovies>
-        {movies ? (
-          movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
+        {!movies ? (
+          <Loader />
         ) : (
-          <h1>Loading...</h1>
+          movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
         )}
       </StyledGridMovies>
     </Wrapper>

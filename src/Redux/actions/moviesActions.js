@@ -1,6 +1,7 @@
-import { collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "../../Firebase/FirebaseConfig";
 import { types } from "../types/types";
+import Swal from "sweetalert2";
 
 /* READ ALL DATA */
 
@@ -26,9 +27,21 @@ export const getMoviesSync = (movies) => {
 
 /* CREATE DATA */
 
-export const addMovie = (movie) => {};
+export const addMovie = (movie) => {
+  return (dispatch) => {
+    addDoc(collection(db, "movies"), movie)
+      .then((resp) => {
+        dispatch(addMovieSync(movie));
+        Swal.fire("Bien Hecho!", "Creado correctamente!", "success");
+      })
+      .catch((err) => {
+        console.log(err);
+        Swal.fire("Oops...", "Ha ocurrido un error", "error");
+      });
+  };
+};
 
-export const addMoviesSync = (movie) => {
+export const addMovieSync = (movie) => {
   return {
     type: types.add,
     payload: movie,

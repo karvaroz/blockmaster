@@ -1,8 +1,14 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { fileUpload } from "../../helpers/fileUpload";
 import { useForm } from "../../Hooks/useForm";
+import { addMovie } from "../../Redux/actions/moviesActions";
 
 const MovieCreate = () => {
+  const dispatch = useDispatch();
+
   const [values, handleInputChange, reset] = useForm({
     original_title: "",
     release_date: "",
@@ -21,11 +27,33 @@ const MovieCreate = () => {
     vote_average,
   } = values;
 
+  const handleUploadFile = (e) => {
+    const file = e.target.files[0];
+    fileUpload(file)
+      .then((response) => {
+        values.poster_path = response;
+        Swal.fire({
+          title: "Subiendo Archivo",
+          text: "Espere ...",
+          allowOutsideClick: false,
+          timer: 5000,
+          showConfirmButton: false
+        });
+        ;
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire("Oops...", "Ha ocurrido un error", "error");
+      });
+  };
+
   const handleCreateSubmit = (e) => {
     e.preventDefault();
     console.log(values);
+    dispatch(addMovie(values));
     reset();
   };
+
   return (
     <div>
       <form className="login_form" onSubmit={handleCreateSubmit}>
@@ -65,14 +93,13 @@ const MovieCreate = () => {
           onChange={handleInputChange}
         />
         <input
+          id="file"
           type="file"
           name="poster_path"
-          value={poster_path}
-          onChange={handleInputChange}
+          accept=".jpg, .jpeg, .png"
+          onChange={handleUploadFile}
         />
-        <button type="submit" className="login_btn login">
-          Crear Pelicula
-        </button>
+        <button type="submit" className="login_btn login">Crear</button>
         <Link to="/movies" className="link">
           Volver
         </Link>
