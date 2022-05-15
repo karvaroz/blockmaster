@@ -29,7 +29,7 @@ CONSIDERACIONES TÉCNICAS
 ● Establecer enrutamiento dinámico con React-router. --Listo
 ● CRUD con firebase (agregar, listar, editar, eliminar, también buscar) (NO uso de API’s). --Listo
 ● Publicar el resultado del frontend haciendo uso de Netlify, Vercel, GitHub Pages u otro proveedor de despliegues.
-● Tener en cuenta las recomendaciones y estructura del README.md profesional.
+● Tener en cuenta las recomendaciones y estructura del README.md profesional. --Listo
 ● Entender e implementar el ciclo de vida de Redux con Middlewares y dispatcher. --Listo
 ● Implementación de React Hooks. --Listo
 ● Implementar Formik y Yup. --Listo

@@ -5,6 +5,7 @@ import Login from "../Components/Login/Login";
 import Movies from "../Components/Movies/Movies";
 import MoviesLess from "../Components/Movies/MoviesLess";
 import MoviesMore from "../Components/Movies/MoviesMore";
+import Searching from "../Components/Search/Search";
 import SignUp from "../Components/SignUp/SignUp";
 import Users from "../Components/Users/Users";
 
@@ -19,12 +20,13 @@ const AppRouter = () => {
       if (user?.uid) {
         console.log("User is logged in");
         setIsLoggedIn(true);
+        isLoggedIn(true);
       } else {
         setIsLoggedIn(false);
       }
       setChecking(false);
     });
-  }, [setIsLoggedIn, setChecking]);
+  }, [setIsLoggedIn, setChecking, isLoggedIn]);
 
   if (checking) {
     return <h1>Espere....</h1>;
@@ -34,9 +36,11 @@ const AppRouter = () => {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+
         <Route path="/movies" element={<Movies />} />
         <Route path="/moviesLessRated" element={<MoviesLess />} />
         <Route path="/moviesMoreRated" element={<MoviesMore />} />
+        <Route path="/search" element={<Searching />} />
         <Route path="/crud" element={<Users />} />
       </Routes>
     </BrowserRouter>
