@@ -61,7 +61,7 @@ const Users = () => {
   };
 
   return (
-    <section>
+    <section className="section_crud">
       <table className="table-fill">
         <thead>
           <tr>

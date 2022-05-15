@@ -83,13 +83,15 @@ const Navbar = () => {
               </button>
             </div>
           </Search>
+          <Link to="/crud" className="btn btn-light">
+            CRUD
+          </Link>
           <button
-            className="search-button"
+            className="btn btn-light"
             onClick={() => dispatch(startLogout())}
           >
             Cerrar
           </button>
-          <Link to="/crud">Crear</Link>
         </div>
       </Wrapper>
     </StyledHeader>
