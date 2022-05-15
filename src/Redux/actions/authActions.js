@@ -3,13 +3,14 @@ import { facebook, google } from "../../Firebase/FirebaseConfig";
 
 import {
   createUserWithEmailAndPassword,
+  deleteUser,
   getAuth,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
   updateProfile,
 } from "firebase/auth";
 import Swal from "sweetalert2";
-
 
 // Async Login with email and password
 
@@ -43,7 +44,11 @@ export const startGoogleLogin = () => {
     signInWithPopup(auth, google)
       .then(({ user }) => {
         dispatch(login(user.uid, user.displayName));
-       Swal.fire("Bien Hecho!", "Inicio de sesión con google exitoso", "success");
+        Swal.fire(
+          "Bien Hecho!",
+          "Inicio de sesión con google exitoso",
+          "success"
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -59,7 +64,11 @@ export const startFacebookLogin = () => {
     signInWithPopup(auth, facebook)
       .then(({ user }) => {
         dispatch(login(user.uid, user.displayName));
-        Swal.fire("Bien Hecho!", "Inicio de sesión con facebook exitoso", "success");
+        Swal.fire(
+          "Bien Hecho!",
+          "Inicio de sesión con facebook exitoso",
+          "success"
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -99,11 +108,19 @@ export const signUp = (uid, displayName, email, password) => ({
 export const startLogout = () => {
   return async (dispatch) => {
     const auth = getAuth();
-    await auth
-      .signOut()
+    const userToDelete = auth.currentUser;
+    deleteUser(userToDelete)
       .then(() => {
+        console.log("User deleted");
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire("Oops...", "Ha ocurrido un error", "error");
+      });
+    signOut(auth)
+      .then(() => {
+        Swal.fire("Bien Hecho!", "Adios", "success");
         dispatch(logout());
-        Swal.fire("Bien Hecho!", "Cerraste sesión", "success");
       })
       .catch((error) => {
         console.log(error);

@@ -11,7 +11,6 @@ const MoviesBoxMore = () => {
 
   const { movies } = useSelector((store) => store.movies);
 
-
   const filteredMovies = movies.filter((movie) => movie.vote_average > 7);
 
   useEffect(() => {
