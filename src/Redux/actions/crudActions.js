@@ -1,13 +1,17 @@
 import {
   addDoc,
   collection,
+  deleteDoc,
+  doc,
   getDocs,
+  query,
+  where,
 } from "firebase/firestore";
 import { db } from "../../Firebase/FirebaseConfig";
 import { types } from "../types/types";
 import Swal from "sweetalert2";
 
-/* CREATE DATA  USER*/
+/* CREATE DATA USER*/
 
 export const addUser = (user) => {
   return (dispatch) => {
@@ -30,7 +34,7 @@ export const addUserSync = (user) => {
   };
 };
 
-/* LIST DATA  USER*/
+/* LIST DATA USER*/
 
 export const getUsers = () => {
   return async (dispatch) => {
@@ -41,8 +45,7 @@ export const getUsers = () => {
         ...user.data(),
       });
     });
-    console.log(users);
-    dispatch(getUsersSync(users));
+    dispatch(getUsersSync(users))
   };
 };
 
@@ -50,5 +53,33 @@ export const getUsersSync = (users) => {
   return {
     type: types.getUsers,
     payload: users,
+  };
+};
+
+/* DELETE DATA USER*/
+
+export const deleteUser = (name) => {
+  return async (dispatch) => {
+    const usersCollection = collection(db, "users");
+    const q = query(usersCollection, where("name", "==", name));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((docu) => {
+      deleteDoc(doc(db, "users", docu.id))
+        .then((resp) => {
+          dispatch(deleteUserSync(name));
+          Swal.fire("Bien Hecho!", "Eliminado correctamente!", "success");
+        })
+        .catch((err) => {
+          console.log(err);
+          Swal.fire("Oops...", "Ha ocurrido un error", "error");
+        });
+    });
+  };
+};
+
+export const deleteUserSync = (name) => {
+  return {
+    type: types.deleteUser,
+    payload: name,
   };
 };

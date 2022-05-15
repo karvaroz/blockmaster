@@ -4,12 +4,18 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { fileUpload } from "../../helpers/fileUpload";
 import { useForm } from "../../Hooks/useForm";
-import { addUser, getUsers } from "../../Redux/actions/crudActions";
+import { addUser, deleteUser, getUsers } from "../../Redux/actions/crudActions";
 
 import "./CrudStyle.css";
 
 const Users = () => {
   const dispatch = useDispatch();
+
+    const { users } = useSelector((store) => store.users);
+
+    useEffect(() => {
+      dispatch(getUsers());
+    }, [dispatch]);
 
   const [values, handleInputChange, reset] = useForm({
     name: "",
@@ -17,7 +23,7 @@ const Users = () => {
     image: "",
   });
 
-  const { name, email, image } = values;
+  const { name, email } = values;
 
   const handleUploadFile = (e) => {
     const file = e.target.files[0];
@@ -45,11 +51,9 @@ const Users = () => {
     reset();
   };
 
-  const { users } = useSelector((store) => store.users);
 
-  useEffect(() => {
-    dispatch(getUsers());
-  }, [dispatch]);
+
+
   
 
 
@@ -79,6 +83,7 @@ const Users = () => {
                     <button
                       className="login_btn google"
                       style={{ marginRight: "5px" }}
+                      onClick={() => dispatch(deleteUser(user.name))}
                     >
                       Borrar
                     </button>
