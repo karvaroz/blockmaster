@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "../Components/Login/Login";
 import Movies from "../Components/Movies/Movies";
+import MoviesLess from "../Components/Movies/MoviesLess";
+import MoviesMore from "../Components/Movies/MoviesMore";
 import SignUp from "../Components/SignUp/SignUp";
 import Users from "../Components/Users/Users";
 
@@ -33,6 +35,8 @@ const AppRouter = () => {
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/movies" element={<Movies />} />
+        <Route path="/moviesLessRated" element={<MoviesLess />} />
+        <Route path="/moviesMoreRated" element={<MoviesMore />} />
         <Route path="/crud" element={<Users />} />
       </Routes>
     </BrowserRouter>
