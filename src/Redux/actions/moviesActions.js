@@ -1,13 +1,6 @@
-import {
-  collection,
-  doc,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, doc, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../Firebase/FirebaseConfig";
 import { types } from "../types/types";
-
 
 /* READ ALL DATA */
 
@@ -30,7 +23,6 @@ export const getMoviesSync = (movies) => {
     payload: movies,
   };
 };
-
 
 /* GET DETAIL */
 
@@ -61,4 +53,27 @@ export const getMovieSync = (movie) => {
   };
 };
 
+/* SEARCH */
 
+export const searchMovie = (search) => {
+  return async (dispatch) => {
+    const moviesCollection = collection(db, "movies");
+    const q = query(moviesCollection, where("original_title", "==", search));
+    const datosQ = await getDocs(q);
+    const movie = [];
+    datosQ.forEach((docu) => {
+      movie.push({
+        ...docu.data(),
+      });
+    });
+    console.log(movie);
+    dispatch(searchMovieSync(movie));
+  };
+};
+
+export const searchMovieSync = (movie) => {
+  return {
+    type: types.search,
+    payload: movie,
+  };
+};

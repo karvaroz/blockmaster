@@ -1,13 +1,12 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink} from 'react-router-dom';
 import { Logo, Menu, MenuItem, Navigation, Search, StyledHeader, Wrapper } from './NavbarStyle';
 import { useDispatch } from "react-redux";
 import { startLogout } from '../../Redux/actions/authActions';
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
 
     const isActiveLink = useSelector((state) => state.filter);
 
@@ -65,7 +64,6 @@ const Navbar = () => {
                 type="text"
                 placeholder="Buscar por nombre..."
                 name="search"
-                onClick={() => navigate("/search")}
               />
               <button aria-label="boton buscar" className="search-button">
                 <svg

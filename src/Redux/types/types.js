@@ -7,6 +7,7 @@ export const types = {
   /* MOVIES */
   get: "[Movie] Get Movie",
   detail: "[Movie] Detail Movie",
+  search: "[Movie] Search Movie",
 
   /* USERS */
   getUsers: "[Crud] Get Users",

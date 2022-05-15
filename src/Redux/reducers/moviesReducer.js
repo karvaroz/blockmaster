@@ -16,6 +16,11 @@ export const moviesReducer = (state = initialState, action) => {
         movie: [action.payload],
       };
 
+    case types.search:
+      return {
+        movie: [action.payload],
+      };
+
     default:
       return state;
   }
