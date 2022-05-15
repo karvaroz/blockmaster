@@ -11,19 +11,9 @@ export const moviesReducer = (state = initialState, action) => {
         movies: [...action.payload],
       };
 
-    case types.add:
+    case types.detail:
       return {
-        movies: [action.payload],
-      };
-
-    case types.delete:
-      return {
-        state,
-      };
-      
-    case types.update:
-      return {
-        state,
+        movie: [action.payload],
       };
 
     default:

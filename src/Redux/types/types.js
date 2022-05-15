@@ -5,8 +5,12 @@ export const types = {
   logout: "[Auth] Logout",
 
   /* MOVIES */
-  add: "[Crud] Add Movie",
-  delete: "[Crud] Delete Movie",
-  update: "[Crud] Update Movie",
-  get: "[Crud] Get Movie",
+  get: "[Movie] Get Movie",
+  detail: "[Movie] Detail Movie",
+
+  /* USERS */
+  getUsers: "[Crud] Get Users",
+  addUser: "[Crud] Add User",
+  updateUser: "[Crud] Update User",
+  deleteUser: "[Crud] Delete User",
 };

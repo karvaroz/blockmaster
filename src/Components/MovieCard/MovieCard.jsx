@@ -1,15 +1,16 @@
 import React from "react";
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
+import { getMovie } from "../../Redux/actions/moviesActions";
 import { Poster, StyledCard, VoteAverage } from "./MovieCardStyle";
 
 const MovieCard = ({ movie }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  const { poster_path, vote_average, original_title } = movie;
+  const { poster_path, vote_average, original_title, id } = movie;
 
   const handlerCLickCard = () => {
-    // dispatch(showModal(movie));
-    console.log("click modal");
+    dispatch(getMovie(id));
+    // console.log(id)
   };
 
   const getAverage = (avarage) => avarage < 7;

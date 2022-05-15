@@ -89,7 +89,7 @@ const Navbar = () => {
           >
             Cerrar
           </button>
-          <Link to="/create">Crear</Link>
+          <Link to="/crud">Crear</Link>
         </div>
       </Wrapper>
     </StyledHeader>

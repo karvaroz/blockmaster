@@ -1,7 +1,13 @@
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "../../Firebase/FirebaseConfig";
 import { types } from "../types/types";
-import Swal from "sweetalert2";
+
 
 /* READ ALL DATA */
 
@@ -25,25 +31,34 @@ export const getMoviesSync = (movies) => {
   };
 };
 
-/* CREATE DATA */
 
-export const addMovie = (movie) => {
-  return (dispatch) => {
-    addDoc(collection(db, "movies"), movie)
-      .then((resp) => {
-        dispatch(addMovieSync(movie));
-        Swal.fire("Bien Hecho!", "Creado correctamente!", "success");
-      })
-      .catch((err) => {
-        console.log(err);
-        Swal.fire("Oops...", "Ha ocurrido un error", "error");
-      });
+/* GET DETAIL */
+
+export const getMovie = (id) => {
+  return async (dispatch) => {
+    const moviesCollection = collection(db, "movies");
+    const q = query(moviesCollection, where("id", "==", id));
+    const datosQ = await getDocs(q);
+    let idMovie;
+
+    datosQ.forEach(async (docu) => {
+      idMovie = docu.id;
+    });
+    console.log(idMovie);
+
+    const docRef = doc(db, "movies", idMovie);
+
+    console.log(docRef);
+
+    dispatch(getMovieSync(docRef));
   };
 };
 
-export const addMovieSync = (movie) => {
+export const getMovieSync = (movie) => {
   return {
-    type: types.add,
+    type: types.detail,
     payload: movie,
   };
 };
+
+

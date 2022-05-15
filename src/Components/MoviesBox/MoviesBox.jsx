@@ -23,7 +23,7 @@ const MoviesBox = () => {
         {!movies ? (
           <Loader />
         ) : (
-          movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
+          movies.map((movie, index) => <MovieCard key={index} movie={movie} />)
         )}
       </StyledGridMovies>
     </Wrapper>
