@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import {useNavigate } from "react-router-dom";
 
 import { VoteAverage } from "../MovieCard/MovieCardStyle";
@@ -15,8 +16,11 @@ import {
   Title,
 } from "./MovieDetailStyle";
 
-const MovieDetail = () => {
+const MovieDetail = ({ movie }) => {
+  // const { id, title, overview, vote_average, poster_path } = movie;
     const navigate = useNavigate()
+    // const { movie } = useSelector((store) => store.movie);
+    console.log(movie)
   return (
     <StyledWrapper>
       <Dialog>
@@ -49,7 +53,7 @@ const MovieDetail = () => {
             <li>2021</li>
           </Details>
           <ButtonActions>
-            <Button isPrimary>
+            <Button isPrimary onClick={()=> navigate("")}>
               <img src="./icons/Property 1=play.svg" alt="" />
               VER AHORA
             </Button>

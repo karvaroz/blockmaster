@@ -7,7 +7,6 @@ export const Tag = styled.span`
 `;
 
 export const StyledWrapper = styled.div`
-  /* background: hsl(246, 24%, 7%, 0.92); */
   position: fixed;
   z-index: 2;
   inset: 0;

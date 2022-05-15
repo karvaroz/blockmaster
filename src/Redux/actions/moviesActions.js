@@ -1,4 +1,11 @@
-import { collection, doc, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "../../Firebase/FirebaseConfig";
 import { types } from "../types/types";
 
@@ -36,13 +43,14 @@ export const getMovie = (id) => {
     datosQ.forEach(async (docu) => {
       idMovie = docu.id;
     });
-    console.log(idMovie);
 
-    const docRef = doc(db, "movies", idMovie);
+    const myDocRef = doc(db, "movies", idMovie);
+    const myDoc = await getDoc(myDocRef);
+    if (myDoc.exists()) {
+      console.log("Document data:", myDoc.data());
+    }
 
-    console.log(docRef);
-
-    dispatch(getMovieSync(docRef));
+    // dispatch(getMovieSync(myDoc));
   };
 };
 

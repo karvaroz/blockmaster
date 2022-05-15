@@ -4,11 +4,18 @@ import { Link, NavLink} from 'react-router-dom';
 import { Logo, Menu, MenuItem, Navigation, Search, StyledHeader, Wrapper } from './NavbarStyle';
 import { useDispatch } from "react-redux";
 import { startLogout } from '../../Redux/actions/authActions';
+import { searchMovie } from '../../Redux/actions/moviesActions';
 
 const Navbar = () => {
   const dispatch = useDispatch();
 
     const isActiveLink = useSelector((state) => state.filter);
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        const search = e.target.search.value;
+        dispatch(searchMovie(search));
+    }
 
   return (
     <StyledHeader>
@@ -57,7 +64,7 @@ const Navbar = () => {
               </MenuItem>
             </Menu>
           </Navigation>
-          <Search>
+          <Search onSubmit={handleSearchSubmit}>
             <div style={{ display: "flex" }}>
               <input
                 className="search-input"

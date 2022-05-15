@@ -2,6 +2,7 @@ import { types } from "../types/types";
 
 const initialState = {
   movies: [],
+  movie: {},
 };
 
 export const moviesReducer = (state = initialState, action) => {

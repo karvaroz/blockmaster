@@ -1,17 +1,22 @@
 import React from "react";
-// import { useDispatch } from "react-redux";
-// import { getMovie } from "../../Redux/actions/moviesActions";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getMovie } from "../../Redux/actions/moviesActions";
 import { Poster, StyledCard, VoteAverage } from "./MovieCardStyle";
 
 const MovieCard = ({ movie }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
 
   const { poster_path, vote_average, original_title, id } = movie;
 
-  // const handlerCLickCard = () => {
-  //   dispatch(getMovie(id));
-  //   console.log(id)
-  // };
+  const handlerCLickCard = () => {
+    dispatch(getMovie(id));
+    navigate(`/detail/${id}`);
+
+
+  };
 
   const getAverage = (avarage) => avarage < 7;
 
@@ -22,6 +27,7 @@ const MovieCard = ({ movie }) => {
         alt={original_title}
         title={original_title}
         loading="lazy"
+        onClick={handlerCLickCard}
       />
       <VoteAverage average={getAverage(vote_average)}>
         {vote_average}

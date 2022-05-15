@@ -76,7 +76,6 @@ export const deleteUser = (name) => {
           Swal.fire("Oops...", "Ha ocurrido un error", "error");
         });
     });
-    
   };
 };
 
