@@ -1,21 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { fileUpload } from "../../helpers/fileUpload";
 import { useForm } from "../../Hooks/useForm";
 import { addUser, deleteUser, getUsers } from "../../Redux/actions/crudActions";
+import UserUpdate from "./UserUpdate";
 
 import "./CrudStyle.css";
 
 const Users = () => {
   const dispatch = useDispatch();
 
-    const { users } = useSelector((store) => store.users);
+  const { users } = useSelector((store) => store.users);
 
-    useEffect(() => {
-      dispatch(getUsers());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
 
   const [values, handleInputChange, reset] = useForm({
     name: "",
@@ -46,16 +47,18 @@ const Users = () => {
 
   const handleCreateSubmit = (e) => {
     e.preventDefault();
-    console.log(values);
     dispatch(addUser(values));
     reset();
   };
 
+  const [modal, setModal] = useState(false);
+  const [datos, setDatos] = useState([]);
 
-
-
-  
-
+  const handleUpdateClick = (user) => {
+    setModal(true);
+    setDatos(user);
+    console.log(user);
+  };
 
   return (
     <section>
@@ -87,13 +90,17 @@ const Users = () => {
                     >
                       Borrar
                     </button>
-                    <button className="login_btn login">Editar</button>
+                    <button
+                      className="login_btn login"
+                      onClick={() => handleUpdateClick(user)}
+                    >
+                      Editar
+                    </button>
                   </td>
                 </tr>
               ))
-            : "No hay data"
-            }
-                  </tbody>
+            : "No hay data"}
+        </tbody>
       </table>
 
       <form className="form_crud" onSubmit={handleCreateSubmit}>
@@ -125,6 +132,7 @@ const Users = () => {
           Volver
         </Link>
       </form>
+      {modal === true ? <UserUpdate datos={datos} setModal={setModal} /> : ""}
     </section>
   );
 };

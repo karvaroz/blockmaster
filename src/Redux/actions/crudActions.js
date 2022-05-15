@@ -5,6 +5,7 @@ import {
   doc,
   getDocs,
   query,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import { db } from "../../Firebase/FirebaseConfig";
@@ -24,6 +25,7 @@ export const addUser = (user) => {
         console.log(err);
         Swal.fire("Oops...", "Ha ocurrido un error", "error");
       });
+    dispatch(getUsers());
   };
 };
 
@@ -45,7 +47,7 @@ export const getUsers = () => {
         ...user.data(),
       });
     });
-    dispatch(getUsersSync(users))
+    dispatch(getUsersSync(users));
   };
 };
 
@@ -74,6 +76,7 @@ export const deleteUser = (name) => {
           Swal.fire("Oops...", "Ha ocurrido un error", "error");
         });
     });
+    
   };
 };
 
@@ -81,5 +84,38 @@ export const deleteUserSync = (name) => {
   return {
     type: types.deleteUser,
     payload: name,
+  };
+};
+
+/* UPDATE DATA USER*/
+
+export const updateUser = (email, user) => {
+  return async (dispatch) => {
+    const usersCollection = collection(db, "users");
+    const q = query(usersCollection, where("email", "==", email));
+    const datosQ = await getDocs(q);
+    let id;
+    datosQ.forEach(async (docu) => {
+      id = docu.id;
+    });
+    const docRef = doc(db, "users", id);
+    await updateDoc(docRef, user)
+      .then((resp) => {
+        dispatch(updateUserSync(user));
+        Swal.fire("Bien Hecho!", "Actualizado correctamente!", "success");
+      })
+      .catch((err) => {
+        console.log(err);
+        Swal.fire("Oops...", "Ha ocurrido un error", "error");
+      });
+
+    dispatch(getUsers());
+  };
+};
+
+export const updateUserSync = (user) => {
+  return {
+    type: types.updateUser,
+    payload: user,
   };
 };
