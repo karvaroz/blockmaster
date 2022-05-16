@@ -21,7 +21,7 @@ import {
 const MovieDetail = () => {
   const navigate = useNavigate();
 
-  const { poster_path, original_title, vote_average, overview, release_date } =
+  const { poster_path, original_title, vote_average, overview, release_date, trailer } =
     useSelector((store) => store.movies);
   
   return (
@@ -48,8 +48,10 @@ const MovieDetail = () => {
           </Details>
           <ButtonActions>
             <Button isPrimary>
-              <img src="./icons/Property 1=play.svg" alt="" />
-              VER AHORA
+              <a href={trailer} target="_blank" rel="noreferrer">
+                <img src="./icons/Property 1=play.svg" alt="" />
+                VER AHORA
+              </a>
             </Button>
             <Button>
               <img src="./icons/Property 1=plus.svg" alt="" />

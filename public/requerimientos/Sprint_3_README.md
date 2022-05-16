@@ -11,7 +11,7 @@ Requerimientos
 - Implementar Firebase, Redux y Hooks --Listo
 - Login y registro de usuarios --Listo
 - Añadir el buscador -- Funciona parcialmente
-- Añadir descripción de cada película -- Funciona parcialmente
+- Añadir descripción de cada película -- Listo
 - Añadir video Tráiler de 5 películas
 - Módulo CRUD de películas (Crear, Leer, Actualizar y Eliminar) con Firebase --Listo
 - Ubicción del usuario 
