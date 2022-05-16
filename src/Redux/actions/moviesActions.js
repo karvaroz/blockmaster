@@ -75,7 +75,7 @@ export const searchMovie = (search) => {
       });
     });
     console.log(movie);
-    dispatch(searchMovieSync(movie));
+    // dispatch(searchMovieSync(movie));
   };
 };
 

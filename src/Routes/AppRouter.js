@@ -8,6 +8,8 @@ import MoviesLess from "../Components/Movies/MoviesLess";
 import MoviesMore from "../Components/Movies/MoviesMore";
 import SignUp from "../Components/SignUp/SignUp";
 import Users from "../Components/Users/Users";
+import { PrivateRoutes } from "./PrivateRoutes";
+import { PublicRoutes } from "./PublicRoutes";
 
 const AppRouter = () => {
   const [checking, setChecking] = useState(true);
@@ -19,7 +21,6 @@ const AppRouter = () => {
       if (user?.uid) {
         console.log("User is logged in");
         setIsLoggedIn(true);
-        isLoggedIn(true);
       } else {
         setIsLoggedIn(false);
       }
@@ -33,14 +34,62 @@ const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/detail/:id" element={<MovieDetail />} />
-        <Route path="/moviesLessRated" element={<MoviesLess />} />
-        <Route path="/moviesMoreRated" element={<MoviesMore />} />
-        <Route path="/crud" element={<Users />} />
+        <Route
+          path="/"
+          element={
+            <PublicRoutes isAuth={isLoggedIn}>
+              <Login />
+            </PublicRoutes>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <PublicRoutes isAuth={isLoggedIn}>
+              <SignUp />
+            </PublicRoutes>
+          }
+        />
+        <Route
+          path="/movies"
+          element={
+            <PrivateRoutes isAuth={isLoggedIn}>
+              <Movies />
+            </PrivateRoutes>
+          }
+        />
+        <Route
+          path="/detail/:id"
+          element={
+            <PrivateRoutes isAuth={isLoggedIn}>
+              <MovieDetail />
+            </PrivateRoutes>
+          }
+        />
+        <Route
+          path="/moviesLessRated"
+          element={
+            <PrivateRoutes isAuth={isLoggedIn}>
+              <MoviesLess />
+            </PrivateRoutes>
+          }
+        />
+        <Route
+          path="/moviesMoreRated"
+          element={
+            <PrivateRoutes isAuth={isLoggedIn}>
+              <MoviesMore />
+            </PrivateRoutes>
+          }
+        />
+        <Route
+          path="/crud"
+          element={
+            <PrivateRoutes isAuth={isLoggedIn}>
+              <Users />
+            </PrivateRoutes>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
