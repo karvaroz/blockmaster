@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import {useNavigate } from "react-router-dom";
+
+import { useNavigate } from "react-router-dom";
 
 import { VoteAverage } from "../MovieCard/MovieCardStyle";
 import {
@@ -16,44 +17,37 @@ import {
   Title,
 } from "./MovieDetailStyle";
 
-const MovieDetail = ({ movie }) => {
-  // const { id, title, overview, vote_average, poster_path } = movie;
-    const navigate = useNavigate()
-    // const { movie } = useSelector((store) => store.movie);
-    console.log(movie)
+
+const MovieDetail = () => {
+  const navigate = useNavigate();
+
+  const { poster_path, original_title, vote_average, overview, release_date } =
+    useSelector((store) => store.movies);
+  
   return (
     <StyledWrapper>
       <Dialog>
         <ThumbnailWrapper>
           <Thumbnail
-            // src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-            src="./images/Ava.jpg"
-            // alt={title}
-            // title={title}
+            src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+            alt={original_title}
+            title={original_title}
             width="220"
             height="330"
             loading="lazy"
-            alt="poster"
           />
           <VoteAverage>
-            <span>8.1</span>
+            <span>{vote_average}</span>
           </VoteAverage>
         </ThumbnailWrapper>
         <Content>
-          <Title>Unknown Origins</Title>
-          <Overview>
-            In Madrid, Spain, a mysterious serial killer ruthlessly murders his
-            victims by recreating the first appearance of several comic book
-            superheroes. Cosme, a veteran police inspector who is about to
-            retire, works on the case along with the tormented inspector David
-            Valentín and his own son Jorge Elías, a nerdy young man who owns a
-            comic book store.
-          </Overview>
+          <Title>{original_title}</Title>
+          <Overview>{overview}</Overview>
           <Details>
-            <li>2021</li>
+            <li>{release_date} </li>
           </Details>
           <ButtonActions>
-            <Button isPrimary onClick={()=> navigate("")}>
+            <Button isPrimary>
               <img src="./icons/Property 1=play.svg" alt="" />
               VER AHORA
             </Button>

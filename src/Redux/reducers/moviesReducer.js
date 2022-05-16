@@ -2,7 +2,7 @@ import { types } from "../types/types";
 
 const initialState = {
   movies: [],
-  movie: {},
+  // movie: {},
 };
 
 export const moviesReducer = (state = initialState, action) => {
@@ -14,12 +14,12 @@ export const moviesReducer = (state = initialState, action) => {
 
     case types.detail:
       return {
-        movie: [action.payload],
+        ...action.payload.data(),
       };
 
     case types.search:
       return {
-        movie: [action.payload],
+        movies: [action.payload],
       };
 
     default:

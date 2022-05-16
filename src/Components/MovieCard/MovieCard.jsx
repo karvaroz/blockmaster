@@ -14,8 +14,6 @@ const MovieCard = ({ movie }) => {
   const handlerCLickCard = () => {
     dispatch(getMovie(id));
     navigate(`/detail/${id}`);
-
-
   };
 
   const getAverage = (avarage) => avarage < 7;

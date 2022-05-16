@@ -50,14 +50,14 @@ export const getMovie = (id) => {
       console.log("Document data:", myDoc.data());
     }
 
-    // dispatch(getMovieSync(myDoc));
+    dispatch(getMovieSync(myDoc));
   };
 };
 
-export const getMovieSync = (movie) => {
+export const getMovieSync = (myDoc) => {
   return {
     type: types.detail,
-    payload: movie,
+    payload: myDoc,
   };
 };
 
