@@ -74,8 +74,8 @@ export const searchMovie = (search) => {
         ...docu.data(),
       });
     });
-    console.log(movie);
-    // dispatch(searchMovieSync(movie));
+    dispatch(searchMovieSync(movie));
+    dispatch(getMoviesSync(movie));
   };
 };
 

@@ -1,21 +1,31 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
-import { Link, NavLink} from 'react-router-dom';
-import { Logo, Menu, MenuItem, Navigation, Search, StyledHeader, Wrapper } from './NavbarStyle';
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link, NavLink } from "react-router-dom";
+import {
+  Logo,
+  Menu,
+  MenuItem,
+  Navigation,
+  Search,
+  StyledHeader,
+  Wrapper,
+} from "./NavbarStyle";
 import { useDispatch } from "react-redux";
-import { startLogout } from '../../Redux/actions/authActions';
-import { searchMovie } from '../../Redux/actions/moviesActions';
+import { startLogout } from "../../Redux/actions/authActions";
+import { searchMovie } from "../../Redux/actions/moviesActions";
+import { clear } from "@testing-library/user-event/dist/clear";
 
 const Navbar = () => {
   const dispatch = useDispatch();
 
-    const isActiveLink = useSelector((state) => state.filter);
+  const isActiveLink = useSelector((state) => state.filter);
 
-    const handleSearchSubmit = (e) => {
-        e.preventDefault();
-        const search = e.target.search.value;
-        dispatch(searchMovie(search));
-    }
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    const search = e.target.search.value;
+    dispatch(searchMovie(search));
+    clear(e.target.search);
+  };
 
   return (
     <StyledHeader>
@@ -103,6 +113,6 @@ const Navbar = () => {
       </Wrapper>
     </StyledHeader>
   );
-}
+};
 
-export default Navbar
+export default Navbar;
