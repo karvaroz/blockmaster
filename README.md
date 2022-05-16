@@ -6,7 +6,9 @@ Revive una tienda icónica para rentar películas, regresa con una nueva platafo
 
 ![Logo](https://res.cloudinary.com/karvaroz/image/upload/v1652643269/blockmaster/f46ganoy4iie4gaukdhl.jpg)
 
+# Deployment
 
+[Despliegue](https://blockmaster-karvaroz.vercel.app/)
 
 ## Tech Stack
 
