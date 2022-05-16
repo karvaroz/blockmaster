@@ -5,6 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "../Login/LoginStyle.css";
 import { Link } from "react-router-dom";
+import { useForm } from "../../Hooks/useForm";
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -24,6 +25,7 @@ const SignupSchema = Yup.object().shape({
 
 const SignUp = () => {
   const dispatch = useDispatch();
+  const [reset] = useForm()
 
   return (
     <Formik
@@ -39,6 +41,7 @@ const SignUp = () => {
         dispatch(
           startSignUpEmailPassword(values.email, values.password, values.name)
         );
+        reset()
       }}
     >
       {({ isValid }) => (
